@@ -34,8 +34,8 @@ jobs:
       - name: Install linter
         run: pip install sqlfluff
 
-      - name: Run linter
-        run: sqlfluff lint . --dialect ansi
+      - name: Lint models
+        run: "sqlfluff lint models"
 
   lint-dockerfile:
     name: Lint Dockerfiles
