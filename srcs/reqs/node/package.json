@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
-    "test": "echo \"Aucun test defini\" && exit 0"
+    "test": "echo \"Aucun test defini\" && exit 0",
+    "lint": "eslint"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -13,5 +14,11 @@
   "dependencies": {
     "express": "^4.19.2",
     "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^2.0.1",
+    "eslint": "^10.8.1",
+    "globals": "^17.9.0"
   }
 }

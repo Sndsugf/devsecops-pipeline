@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: npm install eslint
-      - run: npm run lint
+      - run: npm run eslint
 
 
