@@ -44,4 +44,3 @@ jobs:
       - uses: actions/checkout@v7
       - name: Run Yamllint
         uses: ibiqlik/action-yamllint@v3
-
