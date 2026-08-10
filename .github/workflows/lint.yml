@@ -1,0 +1,13 @@
+name: CI
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm install eslint
+      - run: npm run lint
+
+
