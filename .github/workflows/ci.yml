@@ -16,7 +16,7 @@ jobs:
 
       - name: Install Dependencies
         working-directory: srcs/reqs/node
-        run: npm install eslint
+        run: npm ci
 
       - name: Run Linter
         working-directory: srcs/reqs/node
