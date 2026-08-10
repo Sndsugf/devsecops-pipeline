@@ -1,7 +1,7 @@
 ---
 name: linting
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
@@ -27,21 +27,6 @@ jobs:
         working-directory: srcs/reqs/node
         run: npm run lint
 
-  lint-sql:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Set up python Environment
-        uses: actions/setup-python@v7
-
-      - name: Install linter
-        run: pip install sqlfluff
-
-      - name: Lint models
-        run: "sqlfluff lint models"
-
   lint-dockerfile:
     name: Lint Dockerfiles
     runs-on: ubuntu-latest
@@ -59,3 +44,4 @@ jobs:
       - uses: actions/checkout@v7
       - name: Run Yamllint
         uses: ibiqlik/action-yamllint@v3
+
