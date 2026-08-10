@@ -10,10 +10,8 @@ COPY package*.json ./
 
 # Installation des dépendances de production uniquement
 # RUN npm install --omit=dev
-RUN npm install
-
-# Install ALL dependencies (including native C/C++ modules if needed)
-RUN npm ci
+RUN npm install &&\
+	npm ci
 
 # Copy remaining source files
 COPY . .

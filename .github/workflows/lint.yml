@@ -1,6 +1,9 @@
+---
 name: linting
 
-on: push
+on: 
+  push:
+  pull_request:
 
 jobs:
   lint-js:
@@ -54,7 +57,3 @@ jobs:
       - uses: actions/checkout@v7
       - name: Run Yamllint
         uses: ibiqlik/action-yamllint@v3
-
-
-
-
