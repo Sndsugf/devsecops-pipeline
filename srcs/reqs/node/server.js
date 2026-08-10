@@ -14,10 +14,10 @@ const pool = new Pool({
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'postgres',
   max: 10,
-  idleTimeoutMillis: 30000,
+  idleTimeoutMillis: 30000
   connectionTimeoutMillis: 5000
 });
-
+// let i = 0;
 // Tentative de connexion avec retry (utile car Postgres peut demarrer
 // apres le conteneur Node malgre depends_on)
 async function connectWithRetry(retries = 10, delay = 3000) {
