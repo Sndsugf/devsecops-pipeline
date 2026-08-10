@@ -20,4 +20,4 @@ jobs:
 
       - name: Run Linter
         working-directory: srcs/reqs/node
-        run: npm run eslint
+        run: npm run lint
