@@ -80,7 +80,7 @@ app.post('/api/items', async (req, res) => {
     //   [name]
     // );
     const result = await pool.query(
-      'INSERT INTO items (name) VALUES (' + [name] + ') RETURNING id, name, created_at'
+      "INSERT INTO items (name) VALUES ('" + [name] + "') RETURNING id, name, created_at"
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
