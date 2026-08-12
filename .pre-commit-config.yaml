@@ -2,9 +2,10 @@ repos:
   - repo: local
     hooks:
       - id: betterleaks
-        name: Betterleaks (Local Dockerfile)
-        description: Builds and runs the root Dockerfile to scan for secrets
-        language: docker
-        # Entry executes betterleaks inside the container against the mounted directory
-        entry: betterleaks git . -v --git-workers=4
+        name: Betterleaks (via Docker)
+        description: Betterleaks scans the Git repository for secrets in a Docker container
+        language: docker_image
+        # Uses official container image and executes the 'git' scanning command
+        entry: ghcr.io/betterleaks/betterleaks:latest git /src -v
+        # Tells pre-commit to pass the entire repository directory as context
         pass_filenames: false
