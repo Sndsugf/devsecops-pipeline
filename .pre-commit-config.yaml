@@ -1,0 +1,6 @@
+-   id: betterleaks
+    name: betterleaks (via docker)
+    description: betterleaks scans the git repo for secret in a docker container 
+    # entry: /src
+    language: docker
+    # files:
