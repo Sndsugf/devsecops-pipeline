@@ -6,6 +6,6 @@ repos:
         description: Betterleaks scans the Git repository for secrets in a Docker container
         language: docker_image
         # Uses official container image and executes the 'git' scanning command
-        entry: ghcr.io/betterleaks/betterleaks:latest git /src -v
+        entry: ghcr.io/betterleaks/betterleaks@sha256:16f903f0100ce7358ef1f870858777e55bec94cf04c6b65c45d013274ea3311c git /src -v
         # Tells pre-commit to pass the entire repository directory as context
         pass_filenames: false
