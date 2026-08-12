@@ -70,20 +70,20 @@ app.get('/api/items', async (req, res) => {
 
 // Creation d'un item
 app.post('/api/items', async (req, res) => {
-//   const { name } = req.body;
-//   if (!name) {
-//     return res.status(400).json({ error: 'Le champ "name" est requis' });
-//   }
-//   try {
-    // const result = await pool.query(
-    //   'INSERT INTO items (name) VALUES ($1) RETURNING id, name, created_at',
-    //   [name]
-    // );
-    const name = req.body.name;
-    try {
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json({ error: 'Le champ "name" est requis' });
+  }
+  try {
     const result = await pool.query(
-      "INSERT INTO items (name) VALUES ('" + req.body.name + "') RETURNING id, name, created_at"
+      'INSERT INTO items (name) VALUES ($1) RETURNING id, name, created_at',
+      [name]
     );
+    // const name = req.body.name;
+    // try {
+    // const result = await pool.query(
+    //   "INSERT INTO items (name) VALUES ('" + name + "') RETURNING id, name, created_at"
+    // );
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
