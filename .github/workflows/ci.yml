@@ -1,0 +1,23 @@
+name: CI Pipeline
+
+on: [push, pull_request]
+
+jobs:
+#   build:
+    # runs-on: ubuntu-latest
+    # steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v4
+      
+    # - name: Run unit tests
+    #   run: |
+    #     npm install
+    #     npm test
+
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run CodeQL scan
+      uses: github/codeql-action/init@v4
+      with:
+        languages: javascript
