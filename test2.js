@@ -1,1 +1,1 @@
-const KEY = "1234"
+const AWS_KEY = "AKIAIOSFODNN7EXAMPLE";
