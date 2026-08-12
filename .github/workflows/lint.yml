@@ -1,13 +1,46 @@
-name: CI
-on: push
+---
+name: linting
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+  pull_request:
+
 jobs:
-  lint:
+  lint-js:
     runs-on: ubuntu-latest
-    container:
-      image: node:20
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Dependencies
+        working-directory: srcs/reqs/node
+        run: npm ci
+
+      - name: Run Linter
+        working-directory: srcs/reqs/node
+        run: npm run lint
+
+  lint-dockerfile:
+    name: Lint Dockerfiles
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - run: npm install eslint
-      - run: npm run lint
+      - name: Run Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          recursive: true
 
-
+  lint-yaml:
+    name: Lint YAML Configs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run Yamllint
+        uses: ibiqlik/action-yamllint@v3
