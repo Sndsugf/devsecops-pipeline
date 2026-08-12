@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: betterleaks
+        name: Betterleaks (Local Dockerfile)
+        description: Builds and runs the root Dockerfile to scan for secrets
+        language: docker
+        # Entry executes betterleaks inside the container against the mounted directory
+        entry: betterleaks git . -v --git-workers=4
+        pass_filenames: false
