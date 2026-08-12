@@ -23,6 +23,9 @@ jobs:
       contents: read
       security-events: write # Required for CodeQL to upload SARIF results
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+	  
     - name: Run CodeQL scan
       uses: github/codeql-action/init@v4
       with:
