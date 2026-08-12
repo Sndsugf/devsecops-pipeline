@@ -4,5 +4,5 @@ repos:
       - id: betterleaks
         name: Betterleaks Scan
         language: docker_image
-        entry: ghcr.io/betterleaks/betterleaks:latest git . -v --git-workers=4
+        entry: ghcr.io/betterleaks/betterleaks:latest protect --staged -v
         pass_filenames: false
