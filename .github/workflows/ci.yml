@@ -19,11 +19,12 @@ jobs:
   security-scan:
     runs-on: ubuntu-latest
     permissions:
-      actions: read
-      contents: read
+    #   actions: read
+    #   contents: read
       security-events: write # Required for CodeQL to upload SARIF results
     steps:
     - name: Run CodeQL scan
       uses: github/codeql-action/init@v4
       with:
         languages: javascript
+        queries: +security-extended,security-and-quality
