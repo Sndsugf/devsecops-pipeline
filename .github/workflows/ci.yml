@@ -1,0 +1,33 @@
+name: security scanning
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+#   build:
+    # runs-on: ubuntu-latest
+    # steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v4
+      
+    # - name: Run unit tests
+    #   run: |
+    #     npm install
+    #     npm test
+
+  security-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write # Required for CodeQL to upload SARIF results
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run CodeQL scan
+      uses: github/codeql-action/init@v4
+      with:
+        languages: javascript
+        queries: +security-extended,security-and-quality
