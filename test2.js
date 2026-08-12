@@ -1,15 +1,14 @@
-const express = require('express');
-const { Pool } = require('pg');
+const app = require("express")(),
+      pg = require("pg"),
+      pool = new pg.Pool(config);
 
-const app = express();
-const pool = new Pool();
-
-app.use(express.json());
-
-app.post('/items', async (req, res) => {
-  // Direct Source (req.body.name) -> Direct Sink (pool.query)
-  const result = await pool.query(
-    "INSERT INTO items (name) VALUES ('" + req.body.name + "') RETURNING id, name, created_at"
-  );
-  res.json(result.rows[0]);
+app.get("search", function handler(req, res) {
+  // BAD: the category might have SQL special characters in it
+  var query1 =
+    "SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='" +
+    req.params.category +
+    "' ORDER BY PRICE";
+  pool.query(query1, [], function(err, results) {
+    // process results
+  });
 });
