@@ -84,6 +84,7 @@ app.post('/api/items', async (req, res) => {
     const result = await pool.query(
       "INSERT INTO items (name) VALUES ('" + name + "') RETURNING id, name, created_at"
     );
+	
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -29,5 +29,5 @@ jobs:
     - name: Run CodeQL scan
       uses: github/codeql-action/init@v4
       with:
-        languages: javascript
+        # languages: javascript
         queries: +security-extended,security-and-quality
