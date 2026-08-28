@@ -1,0 +1,20 @@
+services:
+  snyk-scanner:
+    image: snyk/snyk:uv-python-3.10-trixie-preview@sha256:c65057163e74968e8dd417cef01bdd761cfaa2794be754513427d99f23c54ed2
+    container_name: snyk-scanner
+    # Override entrypoint to invoke bash directly
+    entrypoint: ["/bin/bash", "-c"]
+    environment:
+      - SNYK_TOKEN=${SNYK_TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../..:/project:rw
+    working_dir: /project
+    command:
+      - |
+        echo "==> 1. Running Snyk Open Source (SCA)..."
+        snyk monitor --all-projects || true
+
+        echo "==> 2. Running Snyk Container Scan..."
+        snyk container monitor srcs-app:latest || true
+        snyk container monitor my-vul-nginx:nginx || true

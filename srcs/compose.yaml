@@ -16,7 +16,7 @@ services:
     networks:
       - srcs_devsec-net
     environment:
-      - POSTGRES_PASSWORD=devSecOps2026
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -32,7 +32,7 @@ services:
     networks:
       - srcs_devsec-net
     environment:
-      - POSTGRES_PASSWORD=devSecOps2026
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "3000:3000"
     depends_on:

@@ -74,14 +74,10 @@ app.post('/api/items', async (req, res) => {
   if (!name) {
     return res.status(400).json({ error: 'Le champ "name" est requis' });
   }
-//   try {
-//     const result = await pool.query(
-//       'INSERT INTO items (name) VALUES ($1) RETURNING id, name, created_at',
-//       [name]
-//     );
-    try {
+  try {
     const result = await pool.query(
-      `INSERT INTO items (name) VALUES ('${name}') RETURNING id, name, created_at`
+      'INSERT INTO items (name) VALUES ($1) RETURNING id, name, created_at',
+      [name]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
