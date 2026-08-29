@@ -1,0 +1,23 @@
+# include:
+#   - path: ../../srcs/compose.yaml
+
+services:
+
+  zap-scanner:
+    image: ghcr.io/zaproxy/zaproxy:stable@sha256:781a2bdaea47324e7bab583e2263f21d257b0aee61ed51521a5be45f5f5081ef
+    # depends_on:
+    #   - built-vul-nginx
+    networks:
+      - srcs_devsec-net
+    volumes:
+      # Configuration input (read-only)
+      - ./config.yaml:/zap/config.yaml:ro
+      # Log & report persistent storage (read-write)
+      - ./zap_logs:/zap/wrk:rw
+    # Direct output redirection to capture stdout/stderr in a host log file
+    command: >
+      bash -c "./zap.sh -cmd -autorun /zap/config.yaml | tee /zap/wrk/zap_execution.log"
+
+networks:
+  srcs_devsec-net:
+    external: true

@@ -22,3 +22,10 @@ build/
 .vscode/
 
 .venv/
+ci_cd/monitoring
+ci_cd/trivy
+
+# owasp zap logs folder
+zaproxy/zap_logs/*
+
+.venv/

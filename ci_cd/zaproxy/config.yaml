@@ -1,0 +1,66 @@
+---
+# ZAP Automation Framework Configuration
+env:
+  contexts:
+    - name: "vul-nginx-app"
+      urls:
+        - "http://built-vul-nginx"
+      includePaths:
+        - "http://built-vul-nginx/.*"
+      excludePaths: []
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    continueOnFailure: false
+    progressToStdout: true
+
+jobs:
+  # 1. Traditional Web Crawler
+  - type: spider
+    name: spider
+    parameters:
+      context: "vul-nginx-app"
+      url: "http://built-vul-nginx"
+      maxDuration: 5
+      threadCount: 4
+
+  # 2. Wait for Passive Scanning to complete on crawled routes
+  - type: passiveScan-wait
+    name: passiveScan-wait
+    parameters:
+      maxDuration: 2
+
+  # 3. Active Security Vulnerability Scan
+  - type: activeScan
+    name: activeScan
+    parameters:
+      context: "vul-nginx-app"
+      addQueryParam: false
+      delayInMs: 0
+      handleAntiCSRFTokens: true
+      maxRuleDurationInMins: 0
+      maxScanDurationInMins: 15
+      threadPerHost: 4
+
+  # 4. Generate Visual HTML Report
+  - type: report
+    name: report_html
+    parameters:
+      template: "traditional-html"
+      reportDir: "/zap/wrk"
+      reportFile: "zap_report.html"
+
+  # 5. Generate Machine-Readable SARIF Report
+  - type: report
+    name: report_sarif
+    parameters:
+      template: "sarif-json"
+      reportDir: "/zap/wrk"
+      reportFile: "zap_report.sarif.json"
+
+  # 6. Pipeline Exit Status Gate
+  - type: exitStatus
+    name: exitStatus
+    parameters:
+      errorLevel: "High"
+      warnLevel: "Medium"
