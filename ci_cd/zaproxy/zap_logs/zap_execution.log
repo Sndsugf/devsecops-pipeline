@@ -1,0 +1,47 @@
+Found Java version 17.0.20
+Available memory: 7943 MB
+Using JVM args: -Xmx1985m
+845 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to /home/zap/.ZAP/config.xml
+995 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/session
+996 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/dirbuster
+999 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/fuzzers
+1003 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/plugin
+Job spider set context = vul-nginx-app
+Job spider set url = http://built-vul-nginx
+Job spider set maxDuration = 5
+Job spider set threadCount = 4
+Job passiveScan-wait set maxDuration = 2
+Job activeScan set context = vul-nginx-app
+Job activeScan set addQueryParam = false
+Job activeScan set delayInMs = 0
+Job activeScan set handleAntiCSRFTokens = true
+Job activeScan set maxRuleDurationInMins = 0
+Job activeScan set maxScanDurationInMins = 15
+Job activeScan set threadPerHost = 4
+Job report_html set template = traditional-html
+Job report_html set reportDir = /zap/wrk
+Job report_html set reportFile = zap_report.html
+Job report_sarif set template = sarif-json
+Job report_sarif set reportDir = /zap/wrk
+Job report_sarif set reportFile = zap_report.sarif.json
+Job exitStatus set errorLevel = High
+Job exitStatus set warnLevel = Medium
+Job spider started
+Job spider requesting URL http://built-vul-nginx
+Job spider found 3 URLs
+Job spider finished, time taken: 00:00:00
+Job passiveScan-wait started
+Job passiveScan-wait finished, time taken: 00:00:02
+Job activeScan started
+Job activeScan finished, time taken: 00:00:29
+Job report started
+Job report_html generated report /zap/wrk/zap_report.html
+Job report finished, time taken: 00:00:00
+Job report started
+Job report_sarif generated report /zap/wrk/zap_report.sarif.json
+Job report finished, time taken: 00:00:00
+Job exitStatus started
+An alert has been raised with a risk of at least: Medium
+Job exitStatus finished, time taken: 00:00:00
+Automation plan warnings:
+	An alert has been raised with a risk of at least: Medium
