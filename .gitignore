@@ -26,4 +26,4 @@ ci_cd/monitoring
 ci_cd/trivy
 
 # owasp zap logs folder
-zaproxy/zap_logs
+zaproxy/zap_logs/
