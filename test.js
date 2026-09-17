@@ -1,0 +1,1 @@
+const API_SECRET="AIzaSyB1234567890abcdefghijklmnopqrstuvwx"
